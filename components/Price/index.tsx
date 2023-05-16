@@ -50,7 +50,14 @@ export const Price: React.FC<{
 
   return (
     <div className={classes.actions}>
-      {typeof price !== 'undefined' && price !== '' && <p className={classes.price}>{price}</p>}
+      {typeof product.price !== 'undefined' && product.price !== '' && (
+        <p className={classes.price}>
+          {(product.price / 100).toLocaleString('en-US', {
+            style: 'currency',
+            currency: 'USD',
+          })}
+        </p>
+      )}{' '}
       {button && button === 'addToCart' && (
         <AddToCartButton product={product} appearance="default" />
       )}

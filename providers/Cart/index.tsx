@@ -185,7 +185,7 @@ export const CartProvider = (props) => {
     setCartIsEmpty(isEmpty);
 
     const newTotal = cart.items.reduce((acc, item) => {
-      return acc + (typeof item.product === 'object' ? JSON.parse(item.product.priceJSON)?.data?.[0]?.unit_amount * item.quantity : 0)
+      return acc + (typeof item.product === 'object' ? item.product.price * item.quantity : 0)
     }, 0);
 
     setTotal({

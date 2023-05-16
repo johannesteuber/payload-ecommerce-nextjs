@@ -35,6 +35,7 @@ export const PRODUCT = gql`
         }
         priceJSON
         ${META}
+        price
       }
     }
     ${HEADER}
