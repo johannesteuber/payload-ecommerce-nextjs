@@ -45,9 +45,11 @@ const Order: React.FC = () => {
   }, [user, query])
 
   useEffect(() => {
-    const newTotal = order && order.items.reduce((acc, item) => {
-      return acc + (typeof item.product === 'object' ? item.product.price * item.quantity : 0)
-    }, 0);
+    const newTotal =
+      order &&
+      order.items.reduce((acc, item) => {
+        return acc + (typeof item.product === 'object' ? item.product.price * item.quantity : 0)
+      }, 0)
     setTotal(newTotal)
   }, [order])
 
@@ -56,8 +58,6 @@ const Order: React.FC = () => {
       router.push(`/login?unauthorized=account`)
     }
   }, [user, router])
-
-
 
   return (
     <Gutter className={classes.orders}>
