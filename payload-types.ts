@@ -186,6 +186,7 @@ export interface Product {
   id: string;
   title: string;
   publishedDate?: string;
+  price: number;
   layout: (
     | {
         ctaBackgroundColor?: 'white' | 'black';

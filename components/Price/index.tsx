@@ -50,7 +50,7 @@ export const Price: React.FC<{
 
   return (
     <div className={classes.actions}>
-      {typeof product.price !== 'undefined' && product.price !== '' && (
+      {typeof product.price !== 'undefined' && (
         <p className={classes.price}>
           {(product.price / 100).toLocaleString('en-US', {
             style: 'currency',
