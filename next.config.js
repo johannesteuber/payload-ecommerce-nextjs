@@ -5,7 +5,8 @@ const nextConfig = {
   images: {
     domains: [
       'localhost',
-      process.env.NEXT_PUBLIC_CMS_URL
+      process.env.NEXT_PUBLIC_CMS_URL,
+      'payload-backend.johannesteuber.de'
     ],
     // remotePatterns: [
     //   {
