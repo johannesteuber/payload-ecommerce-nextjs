@@ -21,6 +21,7 @@ const Order: React.FC = () => {
   const router = useRouter()
   const { query } = router
   const [order, setOrder] = useState<OrderType>()
+  const [total, setTotal] = useState<number>(0)
 
   useEffect(() => {
     setLoading(true)
@@ -44,10 +45,19 @@ const Order: React.FC = () => {
   }, [user, query])
 
   useEffect(() => {
+    const newTotal = order && order.items.reduce((acc, item) => {
+      return acc + (typeof item.product === 'object' ? item.product.price * item.quantity : 0)
+    }, 0);
+    setTotal(newTotal)
+  }, [order])
+
+  useEffect(() => {
     if (user === null) {
       router.push(`/login?unauthorized=account`)
     }
   }, [user, router])
+
+
 
   return (
     <Gutter className={classes.orders}>
@@ -84,7 +94,10 @@ const Order: React.FC = () => {
                       <div>{`Quantity ${item.quantity}`}</div>
                       <div>
                         {/* TODO: get actual price */}
-                        {`Price: $${0}`}
+                        {`Price: ${(product.price / 100).toLocaleString('en-US', {
+                          style: 'currency',
+                          currency: 'USD',
+                        })}`}
                       </div>
                     </div>
                   </div>
@@ -97,7 +110,10 @@ const Order: React.FC = () => {
       )}
       <h4>
         {/* TODO: get actual price */}
-        {`Order Total: $0`}
+        {`Order Total: ${(total / 100).toLocaleString('en-US', {
+          style: 'currency',
+          currency: 'USD',
+        })}`}
       </h4>
       <br />
       <Button href="/orders" appearance="primary" label="See all orders" />
