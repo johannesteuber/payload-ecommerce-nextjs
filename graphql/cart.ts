@@ -8,6 +8,7 @@ export const CART = `cart {
       priceJSON
       ${META}
       price
+      title
     }
     quantity
   }
